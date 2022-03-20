@@ -1,46 +1,35 @@
-const { AsyncParallelHook } = require("tapable");
-
-class Model {
+const {AsyncParallelHook} = require('tapable');
+// AsyncParallelHook是异步并行的钩子
+class Hook {
     constructor() {
-        this.hooks = {
-            asyncHook: new AsyncParallelHook(['name']),//这里是new的实例
-            promiseHook: new AsyncParallelHook(['age'])
-        };
+        this.hooks = new AsyncParallelHook(['name']);
     }
-
-    callAsyncHook(name, callback) {
-        this.hooks.asyncHook.callAsync(name, err => {
-            if (err) return callback(err);
-            callback(null);
-        });
+    tap() {
+        this.hooks.tapAsync('vue', (name, cb)=>{
+            setTimeout(()=>{
+                console.log('vue', name); 
+                cb();
+            },1000)
+        }),
+        this.hooks.tapAsync('react', (name, cb)=>{
+            setTimeout(()=>{
+                console.log('react', name); 
+                cb();
+            },1000)
+        })
     }
-
-    callPromiseHook(age) {
-        return this.hooks.promiseHook.promise(age).then(res => console.log(res));
+    /** 异步的触发方法是callAsync() 
+     * 多了一个最终的回调函数 fn.
+     * 发布事件的函数，里面的第二个参数回调函数 传给tapAsync函数的cb参数
+    */
+    calls() {
+        this.hooks.callAsync('call end.', ()=>{
+            console.log('最终的回调函数');
+        })
     }
 }
 
-const model = new Model();
-
-// Async 方式监听事件
-model.hooks.asyncHook.tapAsync('AsyncPluginName', (name, callback) => {
-    const pluginName = 'AsyncPluginName'; 
-    setTimeout( () => {
-        console.log(pluginName, name);
-    }, 2000);
-});
-model.callAsyncHook('jk');
-// 2秒后输出：AsyncPluginName jk
-
-// Promise 方式监听事件
-model.hooks.promiseHook.tapPromise('PromisePluginName', (age) => {
-    const pluginName = 'PromisePluginName';
-    return new Promise((resolve, reject) => {        
-        setTimeout(() => {
-            console.log(pluginName, age);
-            resolve(pluginName);
-        }, 4000);
-    });
-});
-model.callPromiseHook(26);
-// 4秒后输出：PromisePluginName 26
+let hook = new Hook();
+// 等待1s后，分别执行了node call end和react callend 最后执行了最终的回调fn.
+hook.tap();/** 类似订阅 */
+hook.calls();/** 类似发布 */
