@@ -18,14 +18,14 @@ class _AsyncParallelHook {
         let done = () =>{
             /** 执行done() 每次index+1 */
             index++;
-            /** 执行最终的回调 */
+            /** 等全部的task任务都执行完了才执行最终的回调 */
             if(index == this.tasks.length) {
                 finalCallBack();
             }
         }
         this.tasks.forEach((task)=>{
             /** 执行每个task，传入我们给定的done回调函数 */
-            task(...args, done);//并行执行该任务
+            task(...args, done);
         })
     }
 }

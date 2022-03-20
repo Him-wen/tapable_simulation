@@ -3,13 +3,13 @@ do...while
 reduce
  */
 const {
-    SyncHook,
+    SyncHook,//同步
     SyncBailHook,
     SyncWaterfallHook,
     SyncLoopHook,
-    AsyncParallelHook,
+    AsyncParallelHook,//异步并行
     AsyncParallelBailHook,
-    AsyncSeriesHook,
+    AsyncSeriesHook,//异步串行
     AsyncSeriesBailHook,
     AsyncSeriesWaterfallHook
  } = require("tapable");

@@ -1,5 +1,5 @@
-//异步函数钩子的实现
-class _AsyncParallelHook {
+//异步函数钩子并行的实现
+class _AsyncSeriesHook {
     constructor() {
         this.tasks = [];
     }
@@ -13,24 +13,28 @@ class _AsyncParallelHook {
         /** 通过pop()获取到最后一个参数 
          * finalCallBack() 最终的回调
          */
+        /** 递归执行next()方法 直到执行所有task
+         * 最后执行最终的回调finalCallBack()
+         */
         let finalCallBack = args.pop();
-        /** 箭头函数绑定this */
         let done = () =>{
             /** 执行done() 每次index+1 */
-            index++;
             /** 执行最终的回调 */
             if(index == this.tasks.length) {
-                finalCallBack();
+                return finalCallBack();
             }
+            /** index++ 执行每一个task 并传入递归函数next
+             * 执行完每个task后继续递归执行下一个task
+             * next === cb，next就是每一步的cb回调
+            */
+            this.tasks[index](...args, done);//串行执行该任务
+            index++;
         }
-        this.tasks.forEach((task)=>{
-            /** 执行每个task，传入我们给定的done回调函数 */
-            task(...args, done);//并行执行该任务
-        })
+        done();
     }
 }
 
-let hook = new _AsyncParallelHook(['name']);
+let hook = new _AsyncSeriesHook(['name']);
 
 hook.tap('vue', (name, cb)=>{
     setTimeout(()=>{
