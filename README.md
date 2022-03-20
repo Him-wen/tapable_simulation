@@ -1,2 +1,3 @@
 # tapable_simulation
-更新在master分支
+Simple simulation of tapable hook function workflow
+手写Tapable钩子
