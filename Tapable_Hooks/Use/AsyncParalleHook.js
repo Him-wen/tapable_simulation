@@ -8,13 +8,13 @@ class Hook {
         this.hooks.tapAsync('vue', (name, cb)=>{
             setTimeout(()=>{
                 console.log('vue', name); 
-                cb();
+                cb(null, '1');
             },1000)
         }),
         this.hooks.tapAsync('react', (name, cb)=>{
             setTimeout(()=>{
                 console.log('react', name); 
-                cb();
+                cb(null, '1');
             },1000)
         })
     }

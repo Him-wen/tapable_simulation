@@ -10,7 +10,7 @@ AsyncParallelHook,异步✅
 AsyncParallelBailHook,  
 AsyncSeriesHook,异步✅  
 AsyncSeriesBailHook,  
-AsyncSeriesWaterfallHook  
+AsyncSeriesWaterfallHook
 
 ## Hook
 

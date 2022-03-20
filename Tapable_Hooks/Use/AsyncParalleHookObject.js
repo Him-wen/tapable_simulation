@@ -1,3 +1,6 @@
+/**
+ * 封装一个Hook
+ */
 const { AsyncParallelHook } = require("tapable");
 
 class Model {
@@ -8,20 +11,22 @@ class Model {
         };
     }
 
+    //消费者方法触发
     callAsyncHook(name, callback) {
         this.hooks.asyncHook.callAsync(name, err => {
             if (err) return callback(err);
             callback(null);
         });
     }
-
     callPromiseHook(age) {
+        // 本身就是返回promise
         return this.hooks.promiseHook.promise(age).then(res => console.log(res));
     }
 }
 
 const model = new Model();
 
+//注册事件
 // Async 方式监听事件
 model.hooks.asyncHook.tapAsync('AsyncPluginName', (name, callback) => {
     const pluginName = 'AsyncPluginName'; 
