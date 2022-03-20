@@ -17,6 +17,7 @@ class Car {
 
 const myCar = new Car();
 
+// 用户生产者操作
 //绑定同步钩子
 myCar.hooks.break.tap("WarningLampPlugin", () => console.log('WarningLampPlugin'));
 
@@ -34,7 +35,7 @@ myCar.hooks.calculateRoutes.tapPromise("calculateRoutes tapPromise", (source, ta
     })
 });
 
-//执行同步钩子
+//消费事件（系统）执行同步钩子
 myCar.hooks.break.call();
 myCar.hooks.accelerate.call('hello');
 
