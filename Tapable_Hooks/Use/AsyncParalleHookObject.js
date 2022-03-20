@@ -11,14 +11,14 @@ class Model {
         };
     }
 
-    //消费者方法触发
+    //消费者方法触发（钩子）
     callAsyncHook(name, callback) {
         this.hooks.asyncHook.callAsync(name, err => {
             if (err) return callback(err);
             callback(null);
         });
     }
-    callPromiseHook(age) {
+    callPromiseHook(age) {//钩子
         // 本身就是返回promise
         return this.hooks.promiseHook.promise(age).then(res => console.log(res));
     }
@@ -26,14 +26,16 @@ class Model {
 
 const model = new Model();
 
-//注册事件
-// Async 方式监听事件
+//注册事件（需要钩子干的事）用户可以在这里注册，Vue参考生命周期钩子
+// Async 方式监听事件，拿到异步并行的钩子asyncHook，注册AsyncPluginName事件，传入回调函数
 model.hooks.asyncHook.tapAsync('AsyncPluginName', (name, callback) => {
     const pluginName = 'AsyncPluginName'; 
     setTimeout( () => {
         console.log(pluginName, name);
     }, 2000);
 });
+
+//触发方法，消费注册的这些事件（系统）
 model.callAsyncHook('jk');
 // 2秒后输出：AsyncPluginName jk
 
