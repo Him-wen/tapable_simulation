@@ -3,6 +3,7 @@ const {
     AsyncParallelHook
 } = require('tapable');
 
+//webpack
 class Compiler {
     constructor(options) {
         this.hooks = {
