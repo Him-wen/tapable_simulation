@@ -32,6 +32,7 @@ class _AsyncParallelHook {
 
 let hook = new _AsyncParallelHook(['name']);
 
+// 在钩子上绑定注册事件
 hook.tap('vue', (name, cb)=>{
     setTimeout(()=>{
         console.log('vue', name); 
@@ -46,6 +47,7 @@ hook.tap('react',(name, cb)=>{
 });
 /**
  * 发布事件call传的回调函数,直接丢给tap订阅里面的cb，当作回调去执行
+ * 执行钩子上绑定的事件
  */
  hook.calls('call end.', ()=>{
     console.log('最终的回调函数');
