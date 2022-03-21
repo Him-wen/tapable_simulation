@@ -10,7 +10,9 @@ AsyncParallelHook,异步✅
 AsyncParallelBailHook,  
 AsyncSeriesHook,异步✅  
 AsyncSeriesBailHook,  
-AsyncSeriesWaterfallHook
+AsyncSeriesWaterfallHook  
+
+注释：AsyncParallelHook.js
 
 ## Hook
 

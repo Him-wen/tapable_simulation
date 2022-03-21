@@ -14,6 +14,13 @@ class Car {
         };
     }
 }
+/*
+Tapable -- Webpack
+类Car -- Compiler  实例car -- compiler
+*/
+/**
+ * 绑定钩子，启动钩子
+ */
 
 const myCar = new Car();
 
