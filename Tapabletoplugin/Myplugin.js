@@ -4,6 +4,8 @@ const Compiler = require('./Compiler')
 引入Compiler
 定义一个自己的插件。
 apply方法接受 compiler参数。
+给compiler上的钩子绑定方法。
+仿照webpack规则，向 plugins 属性传入 new 实例
  */
 class MyPlugin{
     constructor() {
