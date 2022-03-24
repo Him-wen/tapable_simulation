@@ -8,7 +8,7 @@ SyncWaterfallHook,✅同步
 SyncLoopHook,  
 AsyncParallelHook,异步✅  
 AsyncParallelBailHook,  
-AsyncSeriesHook,异步✅  
+AsyncSeriesHook,异步✅  (webpack中对应的 run, emit 等方法的对应的实现都是 AsyncSeriesHook 钩子)
 AsyncSeriesBailHook,  
 AsyncSeriesWaterfallHook  
 

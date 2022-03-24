@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "tapable": "^2.2.1"
+    "tapable": "^2.2.1",
+    "webpack": "^5.70.0"
   }
 }
