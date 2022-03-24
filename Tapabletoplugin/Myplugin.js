@@ -1,5 +1,10 @@
 const Compiler = require('./Compiler')
 
+/**
+引入Compiler
+定义一个自己的插件。
+apply方法接受 compiler参数。
+ */
 class MyPlugin{
     constructor() {
 
@@ -18,14 +23,18 @@ class MyPlugin{
     }
 }
 
-
+/**
+ * 模拟webapck插件工作机制
+ */
 //这里类似于webpack.config.js的plugins配置
 //向 plugins 属性传入 new 实例
 
 const myPlugin = new MyPlugin();
 
+
 const options = {
     plugins: [myPlugin]
 }
+
 let compiler = new Compiler(options)
 compiler.run()
