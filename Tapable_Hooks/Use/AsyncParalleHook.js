@@ -42,9 +42,9 @@ class Hook {
                 cb(null, '1');
             },1000)
         }),
- * 执行注册事件的方法：hook.tap()
+ * 执行注册事件的方法：hook.tap()，也就是绑定事件
 
- * 3.hook.calls();启动钩子（启动触发calls函数）让tap上注册的函数依次执行
+ * 3.hook.calls();启动钩子（启动触发calls函数）让tap上注册的函数依次执行（回调为calls传递的参数）
  * hook.tap(),hook.calls()都是包装了一层，实际上执行的是Tapable类的tapAsync()和callAsync()方法，callAsync里面的参数就是给tapAsync的
  * 
  */

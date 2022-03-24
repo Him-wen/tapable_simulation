@@ -12,7 +12,8 @@ AsyncSeriesHook,异步✅
 AsyncSeriesBailHook,  
 AsyncSeriesWaterfallHook  
 
-注释：AsyncParallelHook.js
+注释：AsyncParallelHook.js 与 _AsyncParallelHook.js
+
 
 ## Hook
 
